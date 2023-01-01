@@ -39,12 +39,14 @@ a:hover{
 
 #main {
     margin: 30px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .movie {
+    margin: 10px;
+    width: 350px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     background-color: #e6e7ee;
@@ -66,4 +68,27 @@ a:hover{
 #description {
     padding-left: 10px;
     text-align: justify;
+}
+.form{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.form h1 {
+    margin-top: 0;
+}
+
+.form form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+.log {
+    margin: 50px;
+    padding: 50px 100px;
+    background-color: rgba(255, 255, 255, 0.10);
+    border: 1px solid #fff;
+    border-radius: 10px;
 }

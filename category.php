@@ -10,25 +10,25 @@
 <body>
 <h2>Sélectionner un catégorie que vous voulez souhaitez voir</h2>
 <div>
-    <a href="">Actions</a>
-    <a href="">Adventure</a>
-    <a href="">Animation</a>
-    <a href="">Comedy</a>
-    <a href="">Crime</a>
-    <a href="">Documentary</a>
-    <a href="">Drama</a>
-    <a href="">Family</a>
-    <a href="">Fantasy</a>
-    <a href="">History</a>
-    <a href="">Horror</a>
-    <a href="">Music</a>
-    <a href="">Mystery</a>
-    <a href="">Romance</a>
-    <a href="">Science Fiction</a>
-    <a href="">TV Movie</a>
-    <a href="">Thriller</a>
-    <a href="">War</a>
-    <a href="">Western</a>
+    <a href="action.php">Actions</a>
+    <a href="adventure.php">Adventure</a>
+    <a href="animation.php">Animation</a>
+    <a href="comedy.php">Comedy</a>
+    <a href="crime.php">Crime</a>
+    <a href="documentary.php">Documentary</a>
+    <a href="drama.php">Drama</a>
+    <a href="family.php">Family</a>
+    <a href="fantasy.php">Fantasy</a>
+    <a href="history.php">History</a>
+    <a href="horror.php">Horror</a>
+    <a href="music.php">Music</a>
+    <a href="mystery.php">Mystery</a>
+    <a href="romance.php">Romance</a>
+    <a href="scifi.php">Science Fiction</a>
+    <a href="tvmovie.php">TV Movie</a>
+    <a href="thriller.php">Thriller</a>
+    <a href="war.php">War</a>
+    <a href="western.php">Western</a>
 </div>
 </body>
 

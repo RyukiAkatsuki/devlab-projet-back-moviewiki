@@ -18,14 +18,53 @@ session_start();
 require_once 'header.php';
 ?>
 
+<ul class="genres">
+    <li class="genre" id="28">Action</li>
+    <li class="genre" id="16">Animation</li>
+    <li class="genre" id="12">Aventure</li>
+    <li class="genre" id="35">Comédie</li>
+    <li class="genre" id="80">Crime</li>
+    <li class="genre" id="99">Documentaire</li>
+    <li class="genre" id="18">Drame</li>
+    <li class="genre" id="10751">Familial</li>
+    <li class="genre" id="14">Fantastique</li>
+    <li class="genre" id="10752">Guerre</li>
+    <li class="genre" id="36">Histoire</li>
+    <li class="genre" id="27">Horreur</li>
+    <li class="genre" id="10402">Musique</li>
+    <li class="genre" id="9648">Mystère</li>
+    <li class="genre" id="10749">Romance</li>
+    <li class="genre" id="878">Science-Fiction</li>
+    <li class="genre" id="53">Thriller</li>
+    <li class="genre" id="10770">Téléfilm</li>
+    <li class="genre" id="37">Western</li>
+</ul>
+
+<script>
+    console.log("1")
+
+    document.querySelector('ul').addEventListener('onclick', (e) => {
+        console.log(e.target.value)
+        document.querySelectorAll('.movie-info').forEach(movie => {
+            movie.classList.add('hide')
+        })if(!(e.target.value === 'tous')) {
+            document.querySelectorAll(`.movie-info.${e.target.value}`).forEach(movie => {
+                movie.classList.remove('hide')
+            })
+        } else {
+            document.querySelectorAll(`.movie-info`).forEach(movie => {
+                movie.classList.remove('hide')
+            })
+        }
+    })
+</script>
+
 <main id="main"></main>
 
 <script>
-    //TMDB
+    //get all the movies
 
-    const API_KEY = 'api_key=936113f05c45800acb693083ae1b2701';
-    const BASE_URL = 'https://api.themoviedb.org/3';
-    const API_URL = BASE_URL + '/trending/all/day?' + API_KEY;
+    const API_URL = 'https://api.themoviedb.org/3/trending/all/day?api_key=936113f05c45800acb693083ae1b2701';
     const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
     const main = document.getElementById('main');
@@ -33,27 +72,25 @@ require_once 'header.php';
     fetch(API_URL)
         .then(response => response.json())
         .then(data => {
-            showMovies(data.results);
+            console.log(data)
+            showAllMovies(data.results);
+            console.log(data.results)
         })
 
-    function showMovies(data) {
+    function showAllMovies(data) {
         main.innerHTML = '';
 
         data.forEach(movie => {
-            const {title, poster_path, overview, vote_average} = movie;
+            const {id, title, poster_path} = movie;
             const movieEl = document.createElement('div');
             movieEl.classList.add('movie');
             // des = `${overview}`.substr(0, 150) + "...";
             //console.log(des)
             movieEl.innerHTML = `
-            <div class="movie-info">
-                <img src="${poster_path? IMG_URL+poster_path: "http://via.placeholder.com/1080x1580" }" alt="${title}">
-                <div class="title">
+                <a href="movie.php?idMv=${id}">
+                    <img src="${IMG_URL+poster_path}" alt="${title}">
                     <h3>${title}</h3>
-                </div>
-            </div>
-
-            <div id="description">${overview}</div>
+                </a>
         `
             //const text = document.getElementById("description");
             //text.innerHTML = `${overview}`.substr(0, 150) + "...";
@@ -61,6 +98,8 @@ require_once 'header.php';
             main.appendChild(movieEl);
         })
     }
+
+
 </script>
 </body>
 </html>

@@ -40,6 +40,11 @@ require_once 'header.php';
                 console.log(genre.name)
             })
 
+            if( !data.title ){
+                console.log ("existe pas")
+            } else {
+                console.log (data.title + " existe")
+            }
 
             const ficheMovie = document.createElement('div')
             ficheMovie.classList.add('card')
@@ -57,8 +62,6 @@ require_once 'header.php';
 
                 </div>`
 
-
-            console.log(data.title)
             main.appendChild(ficheMovie);
         })
 

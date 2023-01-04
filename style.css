@@ -27,8 +27,7 @@ li{
 }
 
 .navbar a:hover{
-    color: #e07f7f;
-
+    color: #e0d07f;
 }
 .menu{
     display: flex;
@@ -47,21 +46,23 @@ li{
 .movie {
     margin: 10px;
     width: 250px;
-    background-color: #e6e7ee;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.50);
     padding: 10px;
-    border: 2px solid #000;
-    border-radius: 20px 20px 5px 5px;
+    border-radius: 5px;
 }
-
 .movie img {
     width: 100%;
-    border-radius: 20px 20px 0 0;
+    border-radius: 5px;
 }
-.movie h3 {
+.movie a {
     text-align: center;
     margin: 0;
+    text-decoration: none;
+    color: black;
 }
-
+.movie a:hover{
+    color: #e0d07f;
+}
 .card {
     padding: 50px;
     display: flex;
@@ -71,7 +72,9 @@ li{
 .card img {
     height: 450px;
     border-radius: 20px 0 0 20px;
+    box-shadow: -5px 0 10px rgba(255, 255, 255, 0.50);
 }
+
 .movie-texte {
     text-align: justify;
 }
@@ -93,11 +96,20 @@ li{
     gap: 10px;
 }
 .log {
-    margin: 50px;
-    padding: 50px 100px;
-    background-color: rgba(255, 255, 255, 0.10);
-    border: 1px solid #fff;
+    margin: 40px;
+    padding: 40px 100px;
     border-radius: 10px;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.50);
+}
+.log input {
+    padding: 10px;
+}
+.log a{
+    color: #e0d07f;
+    text-decoration: none;
+}
+.log a:hover{
+    color: #000;
 }
 
 .genres {

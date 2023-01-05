@@ -5,13 +5,16 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="dist/output.css">
+    <title>Categories</title>
 </head>
 <body>
-<h2>Sélectionner un catégorie que vous voulez souhaitez voir</h2>
+<h2>Sélectionner un catégorie que vous voulez souhaitez voir: </h2>
 
-<div id="categories">
+<div id="categories" class="list-none flex flex-col">
+    <ul class="border border-lime-500">
 
+    </ul>
 </div>
 </body>
 
@@ -21,22 +24,24 @@
 
     const API_KEY = "cc816a21b7c34924c67c302133e1a2e9";
 
-    axios.get('https://api.themoviedb.org/3/genre/movie/list', {
-        params: {
-            api_key: API_KEY
-        }
-    })
+
+    axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=cc816a21b7c34924c67c302133e1a2e9')
         .then(function (response) {
-            // handle success
+
             var categories = response.data.genres;
-            var categoryList = '';
-            categories.forEach(function(category) {
-                categoryList += '<li>' + category.name + '</li>';
-            });
-            document.getElementById('categories').innerHTML = '<ul>' + categoryList + '</ul>';
+
+
+            var list = document.getElementById('categories');
+
+
+            for (var i = 0; i < categories.length; i++) {
+                var category = categories[i];
+                var li = document.createElement('li');
+                li.innerHTML = '<a href="https://www.themoviedb.org/genre/' + category.id + '">' + category.name + '</a>';
+                list.appendChild(li);
+            }
         })
         .catch(function (error) {
-            // handle error
             console.log(error);
         });
 </script>

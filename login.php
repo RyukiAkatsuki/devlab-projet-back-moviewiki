@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
+    <link href="/dist/output.css" rel="stylesheet">
     <title>Home</title>
 </head>
 <body>
@@ -14,15 +14,15 @@
 require_once 'header.php';
 ?>
 
-<div class="form">
+<div class="flex justify-center gap-4">
 
-    <div class="log">
+    <div class="flex-col m-10 py-10 px-28">
         <h1>Log in</h1>
-        <form method="post">
-            <input type="email" name="email" placeholder="Email">
-            <input type="password" name="password" placeholder="Password">
+        <form method="post" class="flex-col justify-center bg-amber-500">
+            <input class="p-2.5" type="email" name="email" placeholder="Email">
+            <input class="p-2.5" type="password" name="password" placeholder="Password">
 
-            <div>First time ? <a href="signin.php">Create a account</a></div>
+            <div>First time ? <a class="text-amber-300" href="signin.php">Create a account</a></div>
 
             <input type="submit" name="login" value="Login">
         </form>

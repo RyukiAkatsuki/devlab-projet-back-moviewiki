@@ -9,7 +9,7 @@ session_start();
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
+    <link href="/dist/output.css" rel="stylesheet">
     <title>Home</title>
 </head>
 <body>
@@ -18,11 +18,11 @@ session_start();
 require_once 'header.php';
 ?>
 
-<ul class="genres">
-    <li class="genre" id="28">Action</li>
-    <li class="genre" id="16">Animation</li>
-    <li class="genre" id="12">Aventure</li>
-    <li class="genre" id="35">Comédie</li>
+<ul class="genres hidden">
+    <li class="genre bg-white" id="28">Action</li>
+    <li class="genre bg-white" id="16">Animation</li>
+    <li class="genre bg-white" id="12">Aventure</li>
+    <li class="genre bg-white" id="35">Comédie</li>
     <li class="genre" id="80">Crime</li>
     <li class="genre" id="99">Documentaire</li>
     <li class="genre" id="18">Drame</li>
@@ -59,7 +59,7 @@ require_once 'header.php';
     })
 </script>
 
-<main id="main"></main>
+<main id="main" class="flex flex-wrap justify-around m-8"></main>
 
 <script>
     //get all the movies
@@ -83,13 +83,18 @@ require_once 'header.php';
         data.forEach(movie => {
             const {id, title, poster_path} = movie;
             const movieEl = document.createElement('div');
-            movieEl.classList.add('movie');
+            movieEl.classList.add('m-2.5');
+            movieEl.classList.add('w-64');
+            movieEl.classList.add('p-2.5');
+            movieEl.classList.add('rounded');
+            movieEl.classList.add('border-white');
+            movieEl.classList.add('shadow-[0_0_10px_rgba(250,250,250,0.5)]');
+
             // des = `${overview}`.substr(0, 150) + "...";
-            //console.log(des)
             movieEl.innerHTML = `
-                <a href="movie.php?idMv=${id}">
-                    <img src="${IMG_URL+poster_path}" alt="${title}">
-                    <h3>${title}</h3>
+                <a href="movie.php?idMv=${id}" class="w-full m-0 text-center hover:text-amber-500">
+                    <img class="rounded" src="${IMG_URL+poster_path}" alt="${title}">
+                    <h3 class="p-2 text-center">${title}</h3>
                 </a>
         `
             //const text = document.getElementById("description");

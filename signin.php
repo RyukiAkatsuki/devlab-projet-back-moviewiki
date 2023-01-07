@@ -34,6 +34,7 @@ require_once 'header.php';
 
             require_once 'user.php';
             require_once 'connection.php';
+            require_once 'log.php';
 
             if (isset($_POST['register'])) {
 
@@ -42,7 +43,7 @@ require_once 'header.php';
                     $_POST['password'],
                     $_POST['password2'],
                     $_POST['first_name'],
-                    $_POST['last_name'],
+                    $_POST['last_name']
                 );
 
                 if ($user->verifySign()) {
@@ -51,7 +52,7 @@ require_once 'header.php';
                     $record = $connection->insertUser($user);
 
                     if ($record) {
-                        echo 'Accound registered :)';
+                        echo 'Account registered :)';
                     } else {
                         echo "Internal error...";
                     }

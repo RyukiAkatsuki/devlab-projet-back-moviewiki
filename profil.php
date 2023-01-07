@@ -22,7 +22,7 @@ require_once "get.php";
 require_once 'header.php';
 ?>
 
-<div class="list flex flex-wrap justify-around m-8">
+<div class="list m-8">
 
     <?php
 
@@ -31,6 +31,7 @@ require_once 'header.php';
 
     echo $users->firstName . ' ' . $users->lastName;
     ?>
+    <img src="img/profil.png" width="300px" height="auto">
 
 </div>
 

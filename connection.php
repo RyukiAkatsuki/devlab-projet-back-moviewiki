@@ -22,7 +22,7 @@ class Connection
             'first_name' => $user->firstName,
             'last_name' => $user->lastName,
             'email' => $user->email,
-            'password' => md5($user->password . 'SALT')
+            'password' => md5($user->password . 'SALT'),
         ]);
     }
 

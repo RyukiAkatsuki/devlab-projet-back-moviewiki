@@ -32,11 +32,11 @@ require_once 'header.php';
 <br><br>
 
 <?php
-echo '<h2> Hi ' . $name . ' ' . $lastName . '</h2>';
+echo '<h2 class="text-xl"> Hi ' . $name . ' ' . $lastName . '</h2>';
 ?>
 
 
-<a><button onclick="location.href='logout.php'" id="deco">Log out</button></a>
+<a><button class="bg-amber-500" onclick="location.href='logout.php'" id="deco">Log out</button></a>
 
 </body>
 </html>

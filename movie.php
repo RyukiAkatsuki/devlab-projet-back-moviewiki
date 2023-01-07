@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 $theId = $_GET['idMv'];
@@ -23,7 +24,7 @@ require_once 'header.php';
 <main id="mainMovie" class="flex"></main>
 
 <script>
-    const API_KEY = 'https://api.themoviedb.org/3/movie/<?= $theId ?>>?api_key=936113f05c45800acb693083ae1b2701'
+    const API_KEY = 'https://api.themoviedb.org/3/movie/<?= $theId ?>?api_key=936113f05c45800acb693083ae1b2701&language=en-US'
     const URL_IMG = 'https://image.tmdb.org/t/p/w500'
 
     const main = document.getElementById('mainMovie');
@@ -42,21 +43,24 @@ require_once 'header.php';
             
 
             const ficheMovie = document.createElement('div')
+            ficheMovie.classList.add('card')
             ficheMovie.classList.add('flex')
             ficheMovie.classList.add('p-12')
             ficheMovie.classList.add('gap-5')
-            const {title, overview, release_date, poster_path, vote_average, backdrop_path} = data;
+            const {title, name, overview, release_date, poster_path, vote_average, backdrop_path} = data;
+
+            const tt = ''
+
 
             ficheMovie.innerHTML = `
-                <img class="h-450 rounded" src="${URL_IMG+poster_path}" alt="${title}">
-                <div class="movie-texte">
-                    <h1>${title}</h1>
+                <img class="h-450 rounded bg-green-300" src="${URL_IMG+poster_path}" alt="${title}">
+                <div class="bg-green-300">
+                    <h1>` + tt + `</h1>
 
                     <h3>Release date : ${release_date}</h3>
                     <h3>Vote : ${vote_average}</h3>
                     <h4>Sysnopis : </h4>
                     <p>${overview}</p>
-                    <button>+ ADD</button>
                 </div>`
 
             main.appendChild(ficheMovie);

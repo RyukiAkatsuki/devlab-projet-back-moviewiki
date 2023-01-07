@@ -1,16 +1,15 @@
 <?php
-session_start();
 
 class User
 {
     public string $id;
 
     public function __construct(
+        public string $firstName,
+        public string $lastName,
         public string $email,
         public string $password,
         public string $password2,
-        public string $firstName,
-        public string $lastName
     )
     {
     }
@@ -30,18 +29,6 @@ class User
             $validity = false;
         }
 
-        return $validity;
-    }
-
-    public function verifyLog(): bool
-    {
-
-        $validity = true;
-
-        if ($this->email == '' || $this->password == '') {
-            $validity = false;
-
-        }
         return $validity;
     }
 }

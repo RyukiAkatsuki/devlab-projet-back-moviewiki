@@ -18,3 +18,7 @@ body{
     font-size: 16px;
     background-color: #656565;
 }
+
+.movie {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.50);
+}

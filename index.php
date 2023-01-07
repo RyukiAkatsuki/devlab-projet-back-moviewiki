@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+require_once "get.php";
+
 ?>
 
 <!doctype html>
@@ -61,6 +64,32 @@ require_once 'header.php';
 
 <main id="main" class="flex flex-wrap justify-around m-8"></main>
 
+<h1 class="m-8">Users</h1>
+
+<div class="list flex flex-wrap justify-around m-8">
+
+    <?php
+
+    $connect = new Get();
+    $users = $connect->getAllUsers();
+
+    foreach($users as $user) { ?>
+
+        <div class="users">
+
+            <?php {
+                echo '<div class="user">';
+
+                echo '<a href="profil.php?idUs=' . $user->id . '">' . '<img class="rounded" src="img/profil.png" width="100px" height="auto">' . $user->firstName . ' ' . $user->lastName . '</a>';
+                echo '</div>';
+            } ?>
+
+        </div>
+
+    <?php } ?>
+</div>
+
+
 <script>
     //get all the movies
 
@@ -81,14 +110,23 @@ require_once 'header.php';
         main.innerHTML = '';
 
         data.forEach(movie => {
-            const {id, title, poster_path} = movie;
+            const {id, title, original_title, name, poster_path} = movie;
             const movieEl = document.createElement('div');
+            movieEl.classList.add('movie');
             movieEl.classList.add('m-2.5');
             movieEl.classList.add('w-64');
             movieEl.classList.add('p-2.5');
             movieEl.classList.add('rounded');
             movieEl.classList.add('border-white');
-            movieEl.classList.add('shadow-[0_0_10px_rgba(250,250,250,0.5)]');
+
+            const tt = movie.original_title;
+            const nn = movie.name;
+            if (nn === "undefined") {
+                tt = movie.title;
+                console.log(movie.name)
+            } else if (tt === 'undefined') {
+                tt = movie.name
+            }
 
             // des = `${overview}`.substr(0, 150) + "...";
             movieEl.innerHTML = `

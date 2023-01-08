@@ -26,4 +26,18 @@ class Connection
         ]);
     }
 
+    public function createAlbum($id_user, $name, $visibility): bool
+    {
+        $query = 'INSERT INTO album (id_user, name, visibility)
+                  VALUES (:id_user, :name, :visibility)';
+
+        $statement = $this->pdo->prepare($query);
+
+        return $statement->execute([
+            'id_user' => $id_user,
+            'name' => $name,
+            'visibility' => $visibility
+        ]);
+    }
+
 }

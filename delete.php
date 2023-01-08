@@ -10,5 +10,5 @@ $connection->delete($user);
 if ($_SESSION['admin'] === true) {
     header('Location: admin.php');
 } else {
-    header('Location: my-account.php');
+    header('Location: admin.php');
 }

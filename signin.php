@@ -39,11 +39,11 @@ require_once 'header.php';
             if (isset($_POST['register'])) {
 
                 $user = new User(
+                    $_POST['first_name'],
+                    $_POST['last_name'],
                     $_POST['email'],
                     $_POST['password'],
-                    $_POST['password2'],
-                    $_POST['first_name'],
-                    $_POST['last_name']
+                    $_POST['password2']
                 );
 
                 if ($user->verifySign()) {

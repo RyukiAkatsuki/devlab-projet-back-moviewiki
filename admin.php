@@ -2,6 +2,7 @@
 
 require_once "log.php";
 require_once "connection.php";
+require_once "get.php";
 
 if(isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
     $id = $_SESSION['user'][0];
@@ -34,6 +35,31 @@ require_once 'header.php';
 <?php
 echo '<h2> Hi ' . $name . ' ' . $lastName . '</h2>';
 ?>
+
+
+<div class="list flex flex-wrap justify-around m-8">
+
+    <?php
+
+    $connect = new Get();
+    $users = $connect->getAllUsers();
+
+    foreach($users as $user) { ?>
+
+        <div class="users">
+
+            <?php {
+                echo '<div class="user">';
+                echo '<img class="rounded" src="img/profil.png" width="100px" height="auto">' . $user->firstName . ' ' . $user->lastName;
+                echo '<br>';
+                echo '<a href="delete.php?id=' . $user->id .'">Delete</a>';
+                echo '</div>';
+            } ?>
+
+        </div>
+
+    <?php } ?>
+</div>
 
 
 <a><button onclick="location.href='logout.php'" id="deco">Log out</button></a>

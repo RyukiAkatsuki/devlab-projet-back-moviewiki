@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./category.php"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'dg': '#656565'
+      }
+    },
   },
   plugins: [],
 }

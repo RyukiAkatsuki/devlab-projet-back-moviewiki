@@ -6,15 +6,13 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="dist/output.css">
-    <link rel="stylesheet" href="src/style.css">
     <title>Categories</title>
 </head>
-<body>
+<body class="bg-dg">
 <h2 class="font-bold text-center">Sélectionner un catégorie que vous voulez souhaitez voir: </h2>
 
-<div id="categories" class="list-none flex flex-col content-center justify-center">
-    <ul class="text-black hover:text-amber-300">
-        <li class=""></li>
+<div id="categories" class="list-none flex flex-col font-bold pt-2 items-center justify-items-center">
+    <ul class="">
     </ul>
 </div>
 </body>
@@ -38,7 +36,7 @@
             for (var i = 0; i < categories.length; i++) {
                 var category = categories[i];
                 var li = document.createElement('li');
-                li.innerHTML = '<a href="https://www.themoviedb.org/genre/' + category.id + '">' + category.name + '</a>';
+                li.innerHTML = '<a class="hover:text-amber-300" href="https://www.themoviedb.org/genre/' + category.id + '">' + category.name + '</a>';
                 list.appendChild(li);
             }
         })

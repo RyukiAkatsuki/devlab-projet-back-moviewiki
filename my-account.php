@@ -13,6 +13,9 @@ if(isset($_SESSION['admin']) && $_SESSION['admin'] === false) {
     echo "not admin";
 }
 
+$co = new Get();
+$get = $co->getAlbums($id);
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -74,12 +77,9 @@ require_once 'header.php';
 <div class="flex flex-wrap justify-around p-2">
     <?php
 
-    $co = new Get();
-    $get = $co->getAlbums($id);
-
     foreach ($get as $gets) {
         ?>
-    <div class="flex">
+    <div class="flex border-gray-200">
         <?= $gets['name']; ?>
         <?= $gets['visibility']; ?>
     </div>

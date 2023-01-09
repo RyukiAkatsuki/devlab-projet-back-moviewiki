@@ -45,9 +45,8 @@ require_once 'header.php';
 
         foreach ($get as $gets) {
             if ($gets['visibility'] === 'public') { ?>
-                <div class="flex">
+                <div class="flex justify-around p-2">
                 <?= $gets['name']; ?>
-                <?= $gets['visibility']; ?>
             </div>
                 <?php }
 

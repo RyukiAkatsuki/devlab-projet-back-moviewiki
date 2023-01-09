@@ -62,31 +62,37 @@ require_once 'header.php';
     })
 </script>
 
-<main id="main" class="flex flex-wrap justify-around m-8"></main>
+<div class="main flex">
 
-<h1 class="m-8">Users</h1>
+    <div class="user p-2">
+        <h1 class="m-8">Users</h1>
 
-<div class="list flex flex-wrap justify-around m-8">
+        <div class="list flex-col justify-around m-8">
 
-    <?php
+            <?php
 
-    $connect = new Get();
-    $users = $connect->getAllUsers();
+            $connect = new Get();
+            $users = $connect->getAllUsers();
 
-    foreach($users as $user) { ?>
+            foreach($users as $user) { ?>
 
-        <div class="users">
+                <div class="users">
 
-            <?php {
-                echo '<div class="user">';
+                    <?php {
+                        echo '<div class="user p-2">';
 
-                echo '<a href="profil.php?idUs=' . $user->id . '">' . '<img class="rounded" src="img/profil.png" width="100px" height="auto">' . $user->firstName . ' ' . $user->lastName . '</a>';
-                echo '</div>';
-            } ?>
+                        echo '<a href="profil.php?idUs=' . $user->id . '">' . '<img class="rounded" src="img/profil.png" width="200px" height="auto">' . $user->firstName . '</a>';
+                        echo '</div>';
+                    } ?>
 
+                </div>
+
+            <?php } ?>
         </div>
+    </div>
 
-    <?php } ?>
+    <main id="main" class="flex flex-wrap justify-around m-8"></main>
+
 </div>
 
 

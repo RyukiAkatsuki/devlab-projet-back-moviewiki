@@ -44,13 +44,15 @@ require_once 'header.php';
         $get = $co->getAlbums($theId);
 
         foreach ($get as $gets) {
-            ?>
-            <div class="flex">
+            if ($gets['visibility'] === 'public') { ?>
+                <div class="flex">
                 <?= $gets['name']; ?>
                 <?= $gets['visibility']; ?>
             </div>
+                <?php }
 
-        <?php } ?>
+
+     } ?>
     </div>
 </div>
 

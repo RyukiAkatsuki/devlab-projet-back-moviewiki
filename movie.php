@@ -47,15 +47,14 @@ require_once 'header.php';
             ficheMovie.classList.add('flex')
             ficheMovie.classList.add('p-12')
             ficheMovie.classList.add('gap-5')
-            const {title, name, overview, release_date, poster_path, vote_average, backdrop_path} = data;
+            const {title, overview, release_date, poster_path, vote_average, backdrop_path} = data;
 
-            const tt = ''
 
 
             ficheMovie.innerHTML = `
                 <img class="h-450 rounded bg-green-300" src="${URL_IMG+poster_path}" alt="${title}">
                 <div class="bg-green-300">
-                    <h1>` + tt + `</h1>
+                    <h1>${title}</h1> <br>
 
                     <h3>Release date : ${release_date}</h3>
                     <h3>Vote : ${vote_average}</h3>

@@ -73,4 +73,18 @@ class Get
         return $userObject;
     }
 
+    public function getAlbums(int $id) {
+
+        $query = 'SELECT * FROM album WHERE id_user=' . $id;
+        $statement = $this->pdo->prepare($query);
+        $statement->execute();
+
+        $albums = $statement->fetchAll(PDO::FETCH_ASSOC);
+        if ($albums == array()) {
+            echo 'rien';
+        }
+
+        return $albums;
+    }
+
 }

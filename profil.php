@@ -22,18 +22,38 @@ require_once "get.php";
 require_once 'header.php';
 ?>
 
-<div class="list m-8">
+<div class="flex justify-around">
 
-    <?php
+    <div class="m-8">
 
-    $connect = new Get();
-    $users = $connect->get($theId);
+        <?php
 
-    echo $users->firstName . ' ' . $users->lastName;
-    ?>
-    <img src="img/profil.png" width="300px" height="auto">
+        $connect = new Get();
+        $users = $connect->get($theId);
 
+        echo $users->firstName . ' ' . $users->lastName;
+        ?>
+        <img src="img/profil.png" width="300px" height="auto">
+
+    </div>
+
+    <div class="flex flex-wrap justify-around p-2">
+        <?php
+
+        $co = new Get();
+        $get = $co->getAlbums($theId);
+
+        foreach ($get as $gets) {
+            ?>
+            <div class="flex">
+                <?= $gets['name']; ?>
+                <?= $gets['visibility']; ?>
+            </div>
+
+        <?php } ?>
+    </div>
 </div>
+
 
 </body>
 </html>

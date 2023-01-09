@@ -2,6 +2,8 @@
 
 require_once "log.php";
 require_once "connection.php";
+require_once 'album.php';
+require_once 'get.php';
 
 if(isset($_SESSION['admin']) && $_SESSION['admin'] === false) {
     $id = $_SESSION['user'][0];
@@ -31,16 +33,9 @@ require_once 'header.php';
 
 <br><br>
 <div class="flex justify-around">
-    <div class="p-2">
-        <?= '<h2 class="text-xl"> Hello ' . $name . ' ' . $lastName . '</h2>'; ?>
-        <br>
-        <img class="rounded-3xl" src="img/profil.png" width="200px" height="auto">
-    </div>
 
-    <br>
-    <br>
     <div class="flex-col m-10 py-10 p-2">
-        <h1>Add a album</h1> <br>
+        <h1>Add an album</h1> <br>
         <form method="post" class="flex-col justify-center bg-amber-500">
             <input class="p-2.5" type="text" name="name" placeholder="Album's name"> <br>
             <select class="p-2.5" name="type">
@@ -50,29 +45,47 @@ require_once 'header.php';
 
             <input class="p-2.5" type="submit" name="addAl" value="Add Album">
         </form>
+        <?php
+
+        if (isset($_POST['addAl'])) {
+
+            $connect = new Album();
+            $connected = new Connection();
+
+            if ($connect->verifyAlbum($_POST['name'],$_POST['type'])) {
+                $theAd = $connected->createAlbum($id, $_POST['name'],$_POST['type']);
+            } else {
+                echo "something wrong";
+            }
+        }
+
+        ?>
     </div>
 
+    <div class="p-2">
+        <?= '<h2 class="text-xl"> Hello ' . $name . ' ' . $lastName . '</h2>'; ?>
+        <br>
+        <img class="rounded-3xl" src="img/profil.png" width="200px" height="auto">
+    </div>
 </div>
 <br>
 
-<?php
 
-require_once 'connection.php';
-require_once 'album.php';
+<div class="flex flex-wrap justify-around p-2">
+    <?php
 
-if (isset($_POST['addAl'])) {
+    $co = new Get();
+    $get = $co->getAlbums($id);
 
-    $connect = new Album();
-    $connected = new Connection();
+    foreach ($get as $gets) {
+        ?>
+    <div class="flex">
+        <?= $gets['name']; ?>
+        <?= $gets['visibility']; ?>
+    </div>
 
-    if ($connect->verifyAlbum($_POST['name'],$_POST['type'])) {
-        $theAd = $connected->createAlbum($id, $_POST['name'],$_POST['type']);
-    } else {
-        echo "something wrong";
-    }
-}
-
-?>
+    <?php } ?>
+</div>
 
 <a><button class="bg-amber-500" onclick="location.href='logout.php'" id="deco">Log out</button></a>
 

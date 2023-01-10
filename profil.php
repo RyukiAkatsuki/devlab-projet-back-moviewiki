@@ -2,9 +2,15 @@
 
 session_start();
 
+if(isset($_SESSION['admin']) && $_SESSION['admin'] === false) {
+    $id = $_SESSION['user'][0];
+    $name = $_SESSION['user'][1];
+    $lastName = $_SESSION['user'][2];
+}
+
 $theId = $_GET['idUs'];
 require_once "class/get.php";
-
+require_once "class/connection.php";
 ?>
 
 <!doctype html>
@@ -31,7 +37,7 @@ require_once 'header.php';
         $connect = new Get();
         $users = $connect->get($theId);
 
-        echo '<h1 class="font-h1">' . $users->firstName . ' ' . $users->lastName . '</h1>';
+        echo '<h1 class="text-h1">' . $users->firstName . ' ' . $users->lastName . '</h1>';
         ?>
         <img class="rounded" src="img/profil.png" width="300px" height="auto">
 
@@ -39,20 +45,22 @@ require_once 'header.php';
 
     <div class="justify-around p-2">
         <h1>Albums liked</h1>
-        <div class="flex flex-wrap justify-around p-2">
+        <div class="flex-col justify-around p-2">
             <?php
 
             $co = new Get();
             $getLiked = $co->getAlbumsLiked($theId);
 
             foreach ($getLiked as $gets) { ?>
-                    <div class="movie flex-col justify-around p-2 m-2 w-52">
-                        <?= $gets['id_album']; ?>
+                    <div class="flex">
+                        <div class="movie flex justify-around p-2 m-2 w-52">
+                            <?= $gets['id_album']; ?>
+                        </div>
                     </div>
                 <?php
-
-
             } ?>
+
+
         </div>
 
     </div>
@@ -69,9 +77,22 @@ require_once 'header.php';
 
         foreach ($get as $gets) {
             if ($gets['visibility'] === 'public') { ?>
+
+                <div class="flex-col">
+                <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] === false) { ?>
+                    <form method="post" class="flex justify-center">
+                        <input class="hidden" name="album" value="<?= $gets['id'] ?>">
+                        <input class="p-2" type="submit" name="liked" value="Like">
+                    </form>
+                <?php
+
+                }
+
+                ?>
+
                 <div class="movie flex-col justify-around p-2 m-2 w-52">
                     <?php
-                    echo $gets['name'] . '<br>';
+                    echo '<h1 class="text-h1">' . $gets['name'] . '</h1> <br>';
 
                     $getM = $connect->getMovie($gets['id']);
 
@@ -81,15 +102,24 @@ require_once 'header.php';
                         $idMovie = $gets['id_movie'];
                         echo '<a href="movie.php?idMv=' . $idMovie .'">' . $idMovie . '</a>';
                         ?>
-
                             <div class="film"></div>
                     <?php
 
-                    } ?>
+                    }
+                    ?>
 
                 </div>
+                </div>
             <?php }
-        } ?>
+
+
+            }
+
+        if (isset($_POST['liked'])) {
+            $coo = new Connection();
+            $add = $coo->insertMovieLiked($_SESSION['user'][0], $_POST['album']);
+        }
+        ?>
     </div>
 
 </div>

@@ -76,14 +76,14 @@ require_once 'header.php';
                 $co = new Get();
                 $get = $co->getAlbums($id);
             ?>
-
+<div class="flex justify-center gap-5">
                 <form method="post" class="flex justify-center">
                     <select name="album" class="p-2.5">
-            <?php
-                foreach ($get as $gets) {
-                    echo '<option value=' . $gets['id'] . '>' .  $gets['name'] . '</option>';
-                }
-             ?>
+                    <?php
+                        foreach ($get as $gets) {
+                            echo '<option value=' . $gets['id'] . '>' .  $gets['name'] . '</option>';
+                        }
+                     ?>
                     </select>
                     <input class="p-2.5 bg-amber-300" type="submit" name="addInAl" value="Add Movie">
 
@@ -94,6 +94,9 @@ require_once 'header.php';
                         $theMov = $conn->insertMovie(intval($_POST['album'], 10), $theId);
 
                     } }?>
+
+
+</div>
                 </div>`
 
             main.appendChild(ficheMovie);

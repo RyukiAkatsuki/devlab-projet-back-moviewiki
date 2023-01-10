@@ -53,4 +53,17 @@ class Connection
         ]);
     }
 
+    public function insertMovieLiked($id_user, $id_album)
+    {
+        $query = 'INSERT INTO likes (id_user, id_album)
+                  VALUES (:id_user, :id_album)';
+
+        $statement = $this->pdo->prepare($query);
+
+        return $statement->execute([
+            'id_user' => $id_user,
+            'id_album' => $id_album
+        ]);
+    }
+
 }

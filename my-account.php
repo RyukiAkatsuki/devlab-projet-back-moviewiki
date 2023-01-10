@@ -41,7 +41,6 @@ if ($get == array()) {
 require_once 'header.php';
 ?>
 
-
 <br><br>
 <div class="flex justify-around">
 
@@ -84,8 +83,8 @@ require_once 'header.php';
 
     foreach ($get as $gets) {
         ?>
-    <div class="flex-col border-gray-200">
-        <?php echo $gets['name'] . " | " . $gets['visibility'] . '<br>';
+    <div class="flex-col movie justify-around p-2 m-5">
+        <?php echo '<h1 class="text-h1">' . $gets['name'] . " | " . $gets['visibility'] . '</h1> <br>';
 
         $getM = $co->getMovie($gets['id']);
 
@@ -100,6 +99,29 @@ require_once 'header.php';
 
     <?php } ?>
 </div>
+
+
+<div class="justify-around p-2">
+    <h1>Albums liked</h1>
+    <div class="flex justify-around p-2">
+        <?php
+
+        $co = new Get();
+        $getLiked = $co->getAlbumsLiked($id);
+
+        foreach ($getLiked as $gets) { ?>
+            <div class="flex">
+                <div class="movie flex justify-around p-2 m-2 w-52">
+                    <?= $gets['id_album']; ?>
+                </div>
+            </div>
+            <?php
+        } ?>
+
+    </div>
+
+</div>
+
 
 <a><button class="bg-amber-300 m-5 p-5 rounded-3xl hover:cursor-pointer" onclick="location.href='logout.php'" id="deco">Log out</button></a>
 

@@ -11,15 +11,13 @@ class Get
         $this->pdo = new PDO('mysql:dbname=moviewiki;host=127.0.0.1', 'root', '');
     }
 
-    public function delete(User $user): bool
+    public function delete($id): bool
     {
         $query = 'SET FOREIGN_KEY_CHECKS=0;
-                DELETE FROM user WHERE id = :id';
+                DELETE FROM movie WHERE id =' . $id;
         $statement = $this->pdo->prepare($query);
 
-        return $statement->execute([
-            'id' => $user->id
-        ]);
+        return $statement->execute();
     }
 
 
@@ -80,11 +78,41 @@ class Get
         $statement->execute();
 
         $albums = $statement->fetchAll(PDO::FETCH_ASSOC);
-        if ($albums == array()) {
-            echo 'rien';
-        }
 
         return $albums;
+    }
+
+    public function getAlbumsLiked(int $id) {
+
+        $query = 'SELECT * FROM likes WHERE id_user=' . $id;
+        $statement = $this->pdo->prepare($query);
+        $statement->execute();
+
+        $albums = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $albums;
+    }
+
+    public function getMovie(int $id) {
+
+        $query = 'SELECT * FROM movie WHERE id_album=' . $id;
+        $statement = $this->pdo->prepare($query);
+        $statement->execute();
+
+        $movies = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $movies;
+    }
+
+    public function getMovie2(int $id) {
+
+        $query = 'SELECT * FROM movie WHERE id=' . $id;
+        $statement = $this->pdo->prepare($query);
+        $statement->execute();
+
+        $movies = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $movies;
     }
 
 }

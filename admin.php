@@ -1,8 +1,8 @@
 <?php
 
-require_once "log.php";
-require_once "connection.php";
-require_once "get.php";
+require_once "class/log.php";
+require_once "class/connection.php";
+require_once "class/get.php";
 
 if(isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
     $id = $_SESSION['user'][0];

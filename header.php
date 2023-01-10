@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar min-h-1/2 flex gap-16 justify-center items-center bg-black p-0 text-white shadow-gray-500">
+    <nav class="navbar min-h-1/2 flex gap-16 justify-end items-center bg-black p-2 text-white shadow-gray-500">
 
             <li class="list-none"> <a href="index.php" class="hover:text-amber-300">Home</a></li>
 

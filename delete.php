@@ -1,14 +1,14 @@
 <?php
 
-require_once 'get.php';
+require_once 'class/get.php';
 
 $connection = new Get();
-$user = $connection->get($_GET['id']);
 
-$connection->delete($user);
+$id = intval($_GET['id'], 10);
 
-if ($_SESSION['admin'] === true) {
-    header('Location: admin.php');
-} else {
-    header('Location: admin.php');
-}
+$movie = $connection->getMovie2($_GET['id']);
+
+$del = $connection->delete($id);
+
+header('Location: my-account.php');
+

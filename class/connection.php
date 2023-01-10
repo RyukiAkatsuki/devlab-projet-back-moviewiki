@@ -40,4 +40,17 @@ class Connection
         ]);
     }
 
+    public function insertMovie($id_album, $id_movie)
+    {
+        $query = 'INSERT INTO movie (id_album, id_movie)
+                  VALUES (:id_album, :id_movie)';
+
+        $statement = $this->pdo->prepare($query);
+
+        return $statement->execute([
+            'id_album' => $id_album,
+            'id_movie' => $id_movie
+        ]);
+    }
+
 }

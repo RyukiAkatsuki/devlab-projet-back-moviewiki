@@ -1,9 +1,9 @@
 <?php
 
-require_once "log.php";
-require_once "connection.php";
-require_once 'album.php';
-require_once 'get.php';
+require_once "class/log.php";
+require_once "class/connection.php";
+require_once 'class/album.php';
+require_once 'class/get.php';
 
 if(isset($_SESSION['admin']) && $_SESSION['admin'] === false) {
     $id = $_SESSION['user'][0];
@@ -13,8 +13,16 @@ if(isset($_SESSION['admin']) && $_SESSION['admin'] === false) {
     echo "not admin";
 }
 
+$connect = new Album();
+$connected = new Connection();
+
 $co = new Get();
 $get = $co->getAlbums($id);
+
+if ($get == array()) {
+    $connected->createAlbum($id, "watched", "public");
+    $connected->createAlbum($id, "wish", "public");
+}
 
 ?>
 <!doctype html>
@@ -39,7 +47,7 @@ require_once 'header.php';
 
     <div class="flex-col m-10 py-10 p-2">
         <h1>Add an album</h1> <br>
-        <form method="post" class="flex-col justify-center bg-amber-500">
+        <form method="post" class="flex-col justify-center bg-amber-300">
             <input class="p-2.5" type="text" name="name" placeholder="Album's name"> <br>
             <select class="p-2.5" name="type">
                 <option value="public">Public</option>
@@ -51,9 +59,6 @@ require_once 'header.php';
         <?php
 
         if (isset($_POST['addAl'])) {
-
-            $connect = new Album();
-            $connected = new Connection();
 
             if ($connect->verifyAlbum($_POST['name'],$_POST['type'])) {
                 $theAd = $connected->createAlbum($id, $_POST['name'],$_POST['type']);
@@ -79,15 +84,45 @@ require_once 'header.php';
 
     foreach ($get as $gets) {
         ?>
-    <div class="flex border-gray-200">
-        <?= $gets['name']; ?>
-        <?= $gets['visibility']; ?>
+    <div class="flex-col border-gray-200">
+        <?php echo $gets['name'] . " | " . $gets['visibility'] . '<br>';
+
+        $getM = $co->getMovie($gets['id']);
+
+        foreach ($getM as $get) {
+            echo '<a href="movie.php?idMv=' . $get['id_movie'] .'">' . $get['id_movie'] . '</a>';
+            echo '<a href="delete.php?id=' . $get['id'] . '"> Delete</a>' . '<br>';
+        }
+
+        ?>
+
     </div>
 
     <?php } ?>
 </div>
 
-<a><button class="bg-amber-500" onclick="location.href='logout.php'" id="deco">Log out</button></a>
+<a><button class="bg-amber-300 m-5 p-5 rounded-3xl hover:cursor-pointer" onclick="location.href='logout.php'" id="deco">Log out</button></a>
+
+<script>
+    const API_KEY = 'https://api.themoviedb.org/3/movie/<?= $idMovie ?>?api_key=936113f05c45800acb693083ae1b2701&language=en-US'
+    const URL_IMG = 'https://image.tmdb.org/t/p/w500'
+
+    fetch(API_KEY)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+
+            const ficheMovie = document.getElementById('film')
+            const {id, backdrop_path, poster_path} = data;
+
+            ficheMovie.innerHTML = ` <a href="movie.php?idMv=${id}"><img class="w-full rounded" src="${URL_IMG+backdrop_path}">
+<img class="w-full rounded" src="${URL_IMG+poster_path}"></a> `
+
+        })
+
+
+
+</script>
 
 </body>
 </html>

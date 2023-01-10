@@ -12,6 +12,10 @@ module.exports = {
       '450': '450px',
     },
 
+    fontSize: {
+      'h1': '24px',
+    },
+
   },
   plugins: [],
 }

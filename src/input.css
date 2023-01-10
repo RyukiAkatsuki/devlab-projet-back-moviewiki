@@ -20,5 +20,8 @@ body{
 }
 
 .movie {
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.50);
+    border: 1px solid #fcd34d;
+}
+.catego:hover {
+    background-color: #656565;
 }

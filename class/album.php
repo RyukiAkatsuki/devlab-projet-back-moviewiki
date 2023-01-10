@@ -18,15 +18,9 @@ class Album
             $validity = false;
         }
 
-        if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-            $validity = false;
-        }
-
-        if ($this->password == '' || $this->password != $this->password2 || $this->password2 == '') {
-            $validity = false;
-        }
-
         return $validity;
     }
+
+
 
 }
